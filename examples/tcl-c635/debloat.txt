@@ -1,5 +1,9 @@
-# TCL C635 (reports as "Smart TV Pro", device BeyondTV4, product BeyondTV6, board rtd288o),
-# Android TV 11 (API 30), sold in Brazil. Same platform family as the TCL 43P725 / 50C725K.
+# TCL C635 (reports as "Smart TV Pro", device BeyondTV4, product BeyondTV6 / G03_4K_GB, board rtd288o / RTD2851M),
+# Android TV 11 (API 30), sold in Brazil and Indonesia (Asia-Pacific, AR09 build).
+#
+# Second unit: TCL C635 4K (BeyondTV4-user 11 RP1A.200622.001 AR09 release-keys, RTD2851M),
+# Indonesia / Asia-Pacific (TCL-AP-RTD51M-S1). Tested with CleanYourTV as primary launcher
+# over multiple days across multiple reboots.
 #
 # Apply:   TV_HOST=<tv ip> tools/disable.sh examples/tcl-c635/debloat.txt
 #          (or on Windows: tools\disable.ps1 -TvHost <tv ip> examples\tcl-c635\debloat.txt)
@@ -8,28 +12,73 @@
 #
 # Everything is DISABLED with `pm disable-user --user 0`, never uninstalled.
 #
-# Stock launcher: com.google.android.apps.tv.launcherx (Google TV launcher), kept enabled as
-#   fallback. Installing this repo's launcher works; the Google TV default-home switch remains
-#   a manual pick in Settings (set-home-activity does not stick on this Android TV build).
+# Stock launcher: com.google.android.apps.tv.launcherx (Google TV launcher), kept enabled on Brazil
+#   as fallback or safely disabled and replaced by launcher/ (verified on Indonesia unit).
 # Live TV app: com.tcl.tv, with com.tcl.tvinput for the tuner and the HDMI inputs; keep both.
 #
-# Tested and verified on a real TCL C635 unit (Brazil):
-# - Screenshots, HDMI inputs, Live TV, Wi-Fi, audio and the BT remote remain 100% operational.
-# - 15 packages are disabled in total: the 13 below plus com.google.android.partnersetup
-#   (partner attribution). au.com.stan.and and tv.wuaki.apptv arrived pre-disabled at factory.
-# - Reboot-checked: the disabled set persists across restart.
+# Remote & hardware quirks:
+# - On TCL RC902V / RC802N remotes, the dedicated TV button emits KEYCODE_TV (170 / 4001). The system
+#   window policy maps it to non-existent com.android.tv; map 170:com.tcl.tv/.TVActivity and
+#   4001:com.tcl.tv/.TVActivity in app_keys with HomeKeyService/InputKeyService (see config.json).
+# - The remote's gear button emits keycode 83 / 4077 (settings_key_keycodes).
+# - TV turning off immediately after standby wake fixed via hdmi_control_auto_device_off_enabled=0.
 #
+# Kept enabled on both units:
+# - Hardware tuner & inputs: com.tcl.tv, com.tcl.tvinput
+# - Core system: com.tcl.providers.config, com.tcl.initsetup, com.tcl.system.server, com.tcl.settings
+# - Bluetooth & remote: com.tcl.tcl_bt_rcu_service, com.tcl.autopair
+# - Chromecast built-in: com.google.android.apps.mediashell
+# - System OTA updater: com.tcl.versionUpdateApp
+
 # --- The critical entry: TCL re-enables promo packages on reboot
 com.tcl.overseasappshow                 # factory promo/app-show service, re-enables partner packages
+
+# TCL telemetry and logging
 com.tcl.bi                              # TCL analytics & telemetry (BI service)
 com.tcl.logkit                          # TCL log collection
+com.tcl.xian.StartandroidService        # background logging/diagnostics
+com.google.android.feedback             # crash and feedback reporting
+
+# Recommendation feeds, promo rows, retail demo and auto-installs
+com.tcl.dashboard                       # TCL dashboard recommendations overlay
 com.tcl.waterfall.overseas              # TCL recommendation waterfall feed
 com.tcl.channelplus                     # TCL FAST streaming channels
 com.tcl.partnercustomizer               # partner customization/attribution
-com.google.android.partnersetup         # partner app attribution
-com.tcl.browser                         # stock TCL web browser
-com.tcl.gallery                         # stock TCL gallery/media
+com.tcl.messagebox                      # promo message box popups
 com.tcl.esticker                        # retail demo energy-label overlay
 com.tcl.ocean.instructions              # first-run instructions overlay
 com.tcl.useragreement                   # user agreement onboarding screen
 com.tcl.factory.view                    # factory test/demo shortcut
+com.tcl.tv.tclhome_passive              # pushes TCL content to home screen at boot
+android.autoinstalls.config.google.gtvpai # auto-installs configuration
+com.google.android.partnersetup         # partner app attribution
+com.google.android.onetimeinitializer   # one-time partner setup
+
+# Background services and preloaded extras
+com.tcl.guard                           # T-Guard background manager
+com.tcl.usercenter                      # TCL user account telemetry
+com.tcl.browser                         # stock TCL web browser
+com.tcl.gallery                         # stock TCL gallery/media
+com.tcl.android.webview                 # duplicate TCL WebView
+org.chromium.webview_shell              # Chromium test shell
+com.google.android.syncadapters.calendar # unused calendar sync
+com.google.android.play.games           # Google Play Games
+com.tcl.smartalexa                      # Alexa integration
+com.tcl.gamebar                         # game bar overlay
+com.tcl.ui_mediaCenter                  # stock media center
+
+# Unused regional streaming preloads (Indonesia / Asia-Pacific)
+com.vidio.android.tv                    # Vidio Indonesian streaming service
+id.visionplus.android.atv               # Vision+ Indonesian streaming service
+com.live_streaming_tv.online_tv         # Online TV preload
+com.google.android.youtube.tvmusic      # YouTube Music TV preload
+com.google.android.videos               # Google TV / Play Movies
+
+# Screen mirroring & cast duplicates
+com.tcl.miracast                        # TCL Miracast (Chromecast built-in handles casting)
+com.tcl.MultiScreenInteraction_TV       # TCL MagiConnect / MultiScreen screen share
+
+# Stock Google TV launcher & setup (replaced by launcher/)
+com.google.android.apps.tv.launcherx    # Google TV launcher, replaced by launcher/
+com.google.android.tungsten.setupwraith # Google TV setup wrapper
+com.google.android.apps.tv.dreamx       # Google TV ambient screensaver

@@ -1,6 +1,6 @@
 {
-  "tv": "TCL C635 (Smart TV Pro, BeyondTV4, Realtek rtd288o, Android 11/SDK 30), Brazil",
+  "tv": "TCL C635 (Smart TV Pro, BeyondTV4, Realtek rtd288o / RTD2851M, Android 11/SDK 30), Brazil and Indonesia (Asia-Pacific, AR09 build)",
   "os": "Android TV 11",
   "brand": "TCL",
-  "notes": "TCL BI analytics (com.tcl.bi), logkit, promo waterfall feed, channelplus FAST, partner customizer/attribution, browser, gallery, retail demo (esticker, ocean.instructions, useragreement, factory.view); `com.tcl.overseasappshow` disabled first so promo packages do not re-enable on boot (au.com.stan.and and tv.wuaki.apptv arrive pre-disabled at factory); gamebar kept by choice; Live TV (com.tcl.tv + com.tcl.tvinput), hardware HDMI inputs, voice, OTA and BT remote kept; Google TV launcher stays as fallback; this repo's launcher (com.gathin.tvhome) verified; animation scales set to 0.5 and heavy apps AOT-compiled for faster launch"
+  "notes": "TCL BI analytics (com.tcl.bi), logkit, promo waterfall feed, channelplus FAST, partner customizer/attribution, browser, gallery, retail demo (esticker, ocean.instructions, useragreement, factory.view); `com.tcl.overseasappshow` disabled first so promo packages do not re-enable on boot; gamebar kept by choice; Live TV (com.tcl.tv + com.tcl.tvinput), hardware HDMI inputs, voice, OTA and BT remote kept; this repo's launcher (com.gathin.tvhome) verified; a second unit (Indonesia, AR09 build) replaces launcherx and setupwraith with CleanYourTV, disables regional preloads (Vidio, Vision+, Online TV) and Miracast, restores remote Live TV button (KEYCODE_TV 170 / 4001) to com.tcl.tv via HomeKeyService, and fixes HDMI standby auto-off via hdmi_control_auto_device_off_enabled=0"
 }
