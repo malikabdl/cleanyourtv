@@ -1,0 +1,45 @@
+{
+  "background_color": "#000000",
+  "dock_glass": true,
+  "dock_band": false,
+  "glass_style": "rim",
+  "dock_title": false,
+  "dock_opacity": 85,
+  "fill_dock": true,
+  "columns": 5,
+  "ambient_glow": true,
+  "app_glow": true,
+  "icon_only_buttons": true,
+  "icon_only_inputs": true,
+  "wifi_status_color": true,
+  "tile_menu": true,
+  "wallpaper": true,
+  "wallpaper_rotation_minutes": 60,
+  "wallpaper_moods": {
+    "morning": [
+      "morning.jpg"
+    ],
+    "evening": [
+      "evening.jpg"
+    ],
+    "night": [
+      "night.jpg"
+    ]
+  },
+  "wallpaper_dim": 15,
+  "wallpaper_order": "sequential",
+  "reduced_motion": false,
+  "sky_intensity": 0,
+  "settings_key_keycodes": [83, 4020, 4077],
+  "settings_key_panel": true,
+  "live_tv_package": "com.tcl.tv",
+  "app_keys": [
+    "170:com.tcl.tv/.TVActivity",
+    "KEYCODE_TV:com.tcl.tv/.TVActivity",
+    "4001:com.tcl.tv/.TVActivity",
+    "4062:com.netflix.ninja",
+    "4099:com.amazon.amazonvideo.livingroom",
+    "4065:com.google.android.youtube.tv",
+    "190:com.google.android.youtube.tv"
+  ]
+}

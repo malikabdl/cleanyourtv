@@ -1,0 +1,3 @@
+morning.jpg: Studio Ghibli · Morning Meadow
+evening.jpg: Makoto Shinkai · Golden Hour Twilight
+night.jpg: Makoto Shinkai · Starry Celestial Sky
