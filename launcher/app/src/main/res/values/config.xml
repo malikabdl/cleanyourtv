@@ -175,6 +175,7 @@
         <item>83</item>
         <item>4020</item>
         <item>4077</item>
+        <item>4140</item>
     </integer-array>
     <!-- What those Settings buttons open: false, the TV's Settings; true, a small glass panel at the top right
          with TV settings, Display, Network, Apps (re-enable an app) and Launcher settings, over whatever is on screen.
@@ -185,7 +186,7 @@
          off the enabled list. true: Home puts the helpers that were running back when it starts; one turned off in
          Settings stays off. Needs WRITE_SECURE_SETTINGS, which build-and-install grants with RESTORE_KEY_SERVICES=1
          (-RestoreKeyServices on Windows) and takes back on an install without it. Can also be set with "restore_key_services": true in a theme's config.json. -->
-    <bool name="restore_key_services">false</bool>
+    <bool name="restore_key_services">true</bool>
 
     <!-- More remote buttons that open the input switcher, by Android keycode (INPUT_KEY_SERVICE=1
          build-and-install.sh; KEYCODE_TV always does). For buttons only a disabled app answered: the Xiaomi
@@ -231,11 +232,14 @@
     <string-array name="app_keys" translatable="false">
         <item>170:com.tcl.tv/.TVActivity</item>
         <item>KEYCODE_TV:com.tcl.tv/.TVActivity</item>
+        <item>172:com.tcl.tv/.TVActivity</item>
+        <item>KEYCODE_GUIDE:com.tcl.tv/.TVActivity</item>
         <item>4001:com.tcl.tv/.TVActivity</item>
         <item>4062:com.netflix.ninja</item>
-        <item>4099:com.amazon.amazonvideo.livingroom</item>
         <item>4065:com.google.android.youtube.tv</item>
         <item>190:com.google.android.youtube.tv</item>
+        <item>scan:762:in.startv.hotstar.dplus.tv</item>
+        <item>scan:245:com.google.android.youtube.tv</item>
     </string-array>
 
     <!-- Package of the stock launcher, for TVs whose firmware turns it back on after it was disabled. XGIMI's
